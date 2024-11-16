@@ -19,6 +19,7 @@ import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import dev.xget.freetogame.domain.model.game.FreeGame
 import dev.xget.freetogame.presentation.games.details.GameDetailsScreen
 import dev.xget.freetogame.presentation.games.details.GameDetailsViewModel
@@ -28,49 +29,29 @@ import dev.xget.freetogame.presentation.utils.ScreensRoutes.DETAILS_SCREEN
 import dev.xget.freetogame.presentation.utils.ScreensRoutes.HOME_SCREEN
 import dev.xget.freetogame.presentation.utils.viewModelFactory
 import dev.xget.freetogame.ui.theme.FreetoGameTheme
+import kotlin.random.Random
 
+
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-
             FreetoGameTheme {
                 val navController = rememberNavController()
 
                 NavHost(navController = navController, startDestination = HOME_SCREEN) {
                     // ...
-                    composable(HOME_SCREEN) {
-                        val viewModel = viewModel<HomeScreenViewModel>(
-                            factory =
-                            viewModelFactory(
-                                owner = this@MainActivity
-                            ) {
-                                HomeScreenViewModel(FreetoGameApp.appModule.freeGamesRepository)
-                            }
+                    composable(HOME_SCREEN) { navBackStackEntry ->
+                        HomeScreen(
+                            navController = navController
                         )
-
-                        HomeScreen(viewModel = viewModel, navController = navController)
                     }
                     composable("$DETAILS_SCREEN/{freeGameId}") { navBackStackEntry ->
-                        val uId = navBackStackEntry.arguments?.getString("freeGameId")
 
-                        val viewModel = viewModel<GameDetailsViewModel>(
-                            factory =
-                            viewModelFactory(
-                                owner = this@MainActivity
-                            ) { handle ->
-                                GameDetailsViewModel(
-                                    freeGameId = uId ?: "",
-                                    FreetoGameApp.appModule.freeGamesRepository
-                                )
-                            }
-                        )
-
-                        GameDetailsScreen(viewModel = viewModel, nav = navController)
+                        GameDetailsScreen(nav = navController)
                     }
                 }
             }

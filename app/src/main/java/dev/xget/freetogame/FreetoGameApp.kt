@@ -5,22 +5,20 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.request.CachePolicy
 import coil.util.DebugLogger
+import dagger.hilt.android.HiltAndroidApp
+import dev.xget.freetogame.core.di.AppComponent
 import dev.xget.freetogame.core.di.NetworkModule
 import dev.xget.freetogame.core.di.AppModule
+import dev.xget.freetogame.core.di.DaggerAppComponent
 
+@HiltAndroidApp
 class FreetoGameApp : Application() {
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        networkModule = NetworkModule(this)
-        appModule = AppModule(this)
+        appComponent = DaggerAppComponent.builder()
+            .build()
+        appComponent.inject(this)
     }
-
-    //companion object to access the network module from all over the app
-    companion object {
-        lateinit var networkModule: NetworkModule
-        lateinit var appModule: AppModule
-    }
-
-
 }

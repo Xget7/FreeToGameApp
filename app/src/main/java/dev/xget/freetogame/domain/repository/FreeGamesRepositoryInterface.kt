@@ -14,7 +14,6 @@ interface FreeGamesRepositoryInterface {
 
     suspend fun getFreeGameById(id: Int): FreeGame?
 
-
-
+    suspend fun deleteFavoriteGame(id: Int)
     suspend fun saveFavoriteGame(id: Int)
 }

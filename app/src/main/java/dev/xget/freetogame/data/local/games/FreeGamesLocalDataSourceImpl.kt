@@ -43,4 +43,8 @@ class FreeGamesLocalDataSourceImpl(
     override suspend fun saveFavoriteGame(id: Int) {
         freeGameDao.saveFavoriteGame(id)
     }
+
+    override suspend fun deleteFavoriteGame(id: Int) {
+        freeGameDao.deleteFavoriteGame(id)
+    }
 }

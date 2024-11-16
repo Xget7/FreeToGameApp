@@ -63,6 +63,8 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -71,11 +73,12 @@ import dev.xget.freetogame.domain.model.game.FreeGame
 import dev.xget.freetogame.presentation.games.home.components.GameItemCard
 import dev.xget.freetogame.presentation.games.home.components.GamesFilterBottomSheet
 import dev.xget.freetogame.presentation.utils.ScreensRoutes.DETAILS_SCREEN
+import dev.xget.freetogame.presentation.utils.ScreensRoutes.HOME_SCREEN
 import dev.xget.freetogame.ui.theme.LightBlue
 import dev.xget.freetogame.ui.theme.NormalBlue
 
 @Composable
-fun HomeScreen(viewModel: HomeScreenViewModel, navController: NavHostController) {
+fun HomeScreen(viewModel: HomeScreenViewModel = hiltViewModel(), navController: NavHostController) {
 
     // Lifecycle aware composable
     val state = viewModel.state.collectAsStateWithLifecycle()
@@ -92,7 +95,8 @@ fun HomeScreen(viewModel: HomeScreenViewModel, navController: NavHostController)
                         oldValue = "{freeGameId}",
                         newValue = "${it.id}"
                     )
-            )
+            ){
+            }
         },
         onFilterByCategory = viewModel::onFilterByCategory,
         onFilterByOrder = viewModel::onFilterByOrder,

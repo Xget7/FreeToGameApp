@@ -39,7 +39,7 @@ uiTestJunit4 = "1.7.5"
 uiTestManifest = "1.7.5"
 uiTooling = "1.7.5"
 activityCompose = "1.9.3"
-
+daggerHilt = "2.51.1"
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
@@ -87,3 +87,5 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "converte
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "composeCompiler" }
+android-hilt = { id = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "daggerHilt" }
+

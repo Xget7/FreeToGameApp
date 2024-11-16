@@ -35,7 +35,6 @@ abstract class AppDatabase : RoomDatabase() {
             "gameDatabase"
         ).setJournalMode(JournalMode.TRUNCATE)
             .setQueryCallback({ sqlQuery, bindArgs ->
-                Log.d("RoomQuery", "SQL: $sqlQuery, Args: $bindArgs")
             }, Executors.newSingleThreadExecutor())
             .build()
     }

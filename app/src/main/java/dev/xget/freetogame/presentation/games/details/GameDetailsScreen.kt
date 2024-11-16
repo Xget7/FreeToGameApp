@@ -1,6 +1,7 @@
 package dev.xget.freetogame.presentation.games.details
 
 import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import dev.xget.freetogame.domain.model.game.FreeGame
@@ -32,7 +34,7 @@ import dev.xget.freetogame.presentation.games.ImageGamePager
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GameDetailsScreen(
-    viewModel: GameDetailsViewModel,
+    viewModel: GameDetailsViewModel = hiltViewModel(),
     nav: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -81,7 +83,11 @@ fun GameDetailsScreen(
             )
         }
     })
+    BackHandler {
+        nav.popBackStack()
+    }
 }
+
 
 @Composable
 fun GameDetailsScreenContent(
@@ -93,7 +99,7 @@ fun GameDetailsScreenContent(
     val uriHandler = LocalUriHandler.current
     if (freeGame != null) {
         Column(
-            modifier = Modifier.padding(top = 50.dp)
+            modifier = Modifier.padding(top = 85.dp)
         ) {
             ImageGamePager(
                 urls = listOf(freeGame.thumbnail) + freeGame.screenshots.map { it.url },
@@ -106,7 +112,7 @@ fun GameDetailsScreenContent(
             modifier = modifier
                 .fillMaxSize()
                 .padding(horizontal = 16.dp)
-                .padding(top = 190.dp)
+                .padding(top = 230.dp)
                 .verticalScroll(rememberScrollState())
                 ,
             verticalArrangement = Arrangement.Top
@@ -182,8 +188,8 @@ fun GameDetailsScreenContent(
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
                     onClick = {
@@ -215,14 +221,14 @@ fun GameDetailsScreenContent(
                                     imageVector = Icons.Default.Favorite,
                                     contentDescription = "Favorite",
                                     tint = Color.Red,
-                                    modifier = Modifier.size(40.dp)
+                                    modifier = Modifier.size(30.dp)
                                 )
                             }else{
                                 Icon(
                                     imageVector = Icons.Default.FavoriteBorder,
                                     contentDescription = "Favorite",
-                                    tint = Color.Black,
-                                    modifier = Modifier.size(40.dp)
+                                    tint = Color.Gray,
+                                    modifier = Modifier.size(30.dp)
                                 )
                             }
                         }

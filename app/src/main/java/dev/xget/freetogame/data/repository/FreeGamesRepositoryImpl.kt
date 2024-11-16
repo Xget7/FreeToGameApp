@@ -19,10 +19,8 @@ class FreeGamesRepositoryImpl(
         platform: String
     ): Flow<List<FreeGame>> {
         val response = freeGamesRemoteDataSource.getFreeGames()
-        Log.d("APiGet", response.toString())
         if (response.isSuccess && response.getOrNull() != null) {
             freeGamesLocalDataSource.saveFreeGames(response.getOrDefault(emptyList()))
-            Log.d("APiGet", "Saved")
         }
         return freeGamesLocalDataSource.getFreeGames(name, category, platform)
     }
@@ -31,13 +29,16 @@ class FreeGamesRepositoryImpl(
     override suspend fun getFreeGameById(id: Int): FreeGame?  {
         val localGame = freeGamesLocalDataSource.getFreeGameById(id)
         val remoteGameResponse = freeGamesRemoteDataSource.getFreeGameById(id)
-        Log.d("API REMOTE DATA SOURCE Repo", "getFreeGameById: ${remoteGameResponse.getOrThrow()}")
         var remoteGame : FreeGame? = null
         if (remoteGameResponse.isSuccess && remoteGameResponse.getOrNull() != null) {
             remoteGame = remoteGameResponse.getOrNull()
             remoteGame?.isFavorite = localGame?.isFavorite ?: false
         }
         return remoteGame
+    }
+
+    override suspend fun deleteFavoriteGame(id: Int) {
+        freeGamesLocalDataSource.deleteFavoriteGame(id)
     }
 
     override suspend fun saveFavoriteGame(id: Int) {

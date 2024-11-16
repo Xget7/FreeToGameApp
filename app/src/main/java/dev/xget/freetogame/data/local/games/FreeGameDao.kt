@@ -35,4 +35,7 @@ interface FreeGameDao {
 
     @Query("UPDATE free_games SET isFavorite = 1 WHERE id = :id")
     suspend fun saveFavoriteGame(id: Int)
+
+    @Query("UPDATE free_games SET isFavorite = 0 WHERE id = :id")
+    suspend fun deleteFavoriteGame(id: Int)
 }

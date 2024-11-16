@@ -16,4 +16,6 @@ interface FreeGamesLocalDataSourceI {
     suspend fun saveFreeGames(games: List<FreeGame>)
 
     suspend fun saveFavoriteGame(id: Int)
+
+    suspend fun deleteFavoriteGame(id: Int)
 }

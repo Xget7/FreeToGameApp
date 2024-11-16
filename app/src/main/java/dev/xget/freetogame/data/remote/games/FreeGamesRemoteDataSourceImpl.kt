@@ -19,7 +19,6 @@ class FreeGamesRemoteDataSourceImpl(
         try {
             if (apiResponse.isSuccessful) {
                 val freeGameDtos = apiResponse.body().orEmpty().map { it.toFreeGame() }
-                Log.d("API REMOTE DATA SOURCE", freeGameDtos.toString())
                 return Result.success(freeGameDtos)
             } else {
                 return Result.failure(Throwable(apiResponse.errorBody()!!.string()))

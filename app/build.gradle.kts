@@ -4,7 +4,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     // Jetpack Compose Compiler Plugin
     alias(libs.plugins.compose.compiler)
-
+    // Dagger Hilt
+    id("com.google.dagger.hilt.android")
     // Kotlin Symbol Processing (KSP) Plugin
     id("com.google.devtools.ksp")
 }
@@ -107,5 +108,15 @@ dependencies {
 
     // Compose Material3 (duplicated in some cases)
     implementation(libs.androidx.material3)
+
+    // Dagger Hilt dependencies
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    ksp("com.google.dagger:hilt-compiler:2.51.1")
+
+    // For AndroidX components, if you haven't already
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation("androidx.hilt:hilt-work:1.0.0")
 }
 

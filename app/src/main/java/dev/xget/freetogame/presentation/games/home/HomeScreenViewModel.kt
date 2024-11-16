@@ -3,6 +3,7 @@ package dev.xget.freetogame.presentation.games.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.xget.freetogame.domain.repository.FreeGamesRepositoryInterface
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -10,8 +11,10 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeScreenViewModel(
+@HiltViewModel
+class HomeScreenViewModel @Inject constructor(
     private val gamesRepository: FreeGamesRepositoryInterface
 ) : ViewModel() {
 
