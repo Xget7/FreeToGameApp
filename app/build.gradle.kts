@@ -98,6 +98,8 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     // Testing
+    testImplementation (libs.androidx.core.testing)
+    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit) // Unit testing
     androidTestImplementation(libs.androidx.junit) // Instrumentation tests
     androidTestImplementation(libs.androidx.espresso.core) // Espresso UI testing
@@ -110,13 +112,15 @@ dependencies {
     implementation(libs.androidx.material3)
 
     // Dagger Hilt dependencies
-    implementation("com.google.dagger:hilt-android:2.51.1")
-    ksp("com.google.dagger:hilt-compiler:2.51.1")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 
     // For AndroidX components, if you haven't already
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.hilt.navigation.compose)
 
-    implementation("androidx.hilt:hilt-work:1.0.0")
+    implementation(libs.androidx.hilt.work)
+
+    //
 }
 
