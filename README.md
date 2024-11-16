@@ -29,6 +29,10 @@ El proyecto es una **aplicación Android** desarrollada en **Kotlin**, diseñada
 - **Room**: Base de datos local para el almacenamiento de datos.
 - **Caché**: Implementación de almacenamiento en caché para optimizar la experiencia de usuario.
 
+## Android Studio
+Android Studio Koala | 2024.1.1 Canary 8
+Kotlin 1.9.0
+
 ## Conclusión
 
 Este proyecto ha sido diseñado para proporcionar una experiencia de usuario fluida y rápida, utilizando prácticas modernas de desarrollo Android. La implementación de **MVVM** y las herramientas de **Jetpack** aseguran que el código sea fácil de mantener y expandir a medida que la aplicación crece. La integración con una **base de datos local** y un sistema de **caché** mejora la accesibilidad a los datos, incluso sin conexión a internet.
